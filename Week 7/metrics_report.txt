@@ -1,0 +1,33 @@
+
+DOCUMENT QA (RAG) - SYSTEM METRICS REPORT
+==========================================
+Document source          : data/knowledge_base.txt
+Document size             : 571 words / 3996 characters
+
+Chunking
+  Strategy                : sliding window, word-based
+  Chunk size               : 80 words
+  Chunk overlap             : 20 words
+  Total chunks              : 10
+
+Embeddings
+  Backend                  : TF-IDF (scikit-learn)
+  Embedding dimension        : 254
+
+Vector Store
+  Engine                   : FAISS
+  Index type                : IndexFlatIP (cosine via normalized inner product)
+  Vectors stored             : 10
+
+Generation
+  Backend                  : extractive fallback (top-context sentence extraction)
+
+Experiments
+  Hybrid search              : BM25 + vector similarity, weighted (alpha=0.5)
+  Re-ranking                 : lexical-overlap re-scoring of top-5 candidates
+  Chunking variants tested    : (40,10), (80,20), (150,30)
+
+Validation
+  Test questions run          : 6
+  Avg retrieval time (s)      : 0.0006
+  Avg generation time (s)     : 0.0000
